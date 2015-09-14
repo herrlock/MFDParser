@@ -14,7 +14,7 @@ import org.jsoup.parser.Parser;
  */
 public class Main {
     public static final String folder = "./MFTest";
-    public static final String filename = "OrdersITX_to_IDocOrdersGen";
+    public static final String filename = "Test";
 
     public static void main( String... args ) throws IOException {
         parseHtml();
