@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<element>
+		<value>
+			<a>a</a>
+			<b>1E3</b>
+		</value>
+		<result>S</result>
+	</element>
+	<element>
+		<value>
+			<a>b</a>
+			<b>2</b>
+		</value>
+	</element>
+	<element>
+		<value>
+			<a>c</a>
+			<b>3</b>
+		</value>
+	</element>
+	<element>
+		<value>
+			<a>d</a>
+			<b>4</b>
+		</value>
+	</element>
+	<element>
+		<value>
+			<a>e</a>
+			<b>5</b>
+		</value>
+	</element>
+</root>
