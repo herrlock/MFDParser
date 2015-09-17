@@ -1,7 +1,8 @@
 package de.herrlock.mfd.util;
 
 import static de.herrlock.mfd.elements.Component.Kind.CONSTANT;
-import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION;
+import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION_MFD;
+import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION_MFF;
 import static de.herrlock.mfd.elements.Component.Kind.LOCALFUNCTION;
 import static de.herrlock.mfd.elements.Component.Kind.MAPPING;
 import static de.herrlock.mfd.elements.Component.Kind.VARIABLE;
@@ -13,7 +14,8 @@ import org.jsoup.nodes.Element;
 import de.herrlock.mfd.elements.Component;
 import de.herrlock.mfd.elements.Component.Kind;
 import de.herrlock.mfd.elements.Constant;
-import de.herrlock.mfd.elements.GlobalFunction;
+import de.herrlock.mfd.elements.GlobalGraphicalFunction;
+import de.herrlock.mfd.elements.GlobalLibraryFunction;
 import de.herrlock.mfd.elements.LocalFunction;
 import de.herrlock.mfd.elements.Mapping;
 import de.herrlock.mfd.elements.Variable;
@@ -34,8 +36,10 @@ public class Utils {
                 return new Mapping( element );
             case LOCALFUNCTION:
                 return new LocalFunction( element );
-            case GLOBALFUNCTION:
-                return new GlobalFunction( element );
+            case GLOBALFUNCTION_MFD:
+                return new GlobalGraphicalFunction( element );
+            case GLOBALFUNCTION_MFF:
+                return new GlobalLibraryFunction( element );
             case CONSTANT:
                 return new Constant( element );
             case VARIABLE:
@@ -60,7 +64,13 @@ public class Utils {
             if ( kind == 2 ) {
                 result = CONSTANT;
             } else if ( kind == 19 ) {
-                result = GLOBALFUNCTION;
+                result = GLOBALFUNCTION_MFD;
+            } else if ( kind == 5 ) {
+                result = GLOBALFUNCTION_MFF;
+            } else if ( kind == 7 ) {
+                // TODO
+                // FIXME
+                result = null;
             } else if ( kind == 14 ) {
                 // not sure
                 result = VARIABLE;

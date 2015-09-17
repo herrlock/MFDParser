@@ -34,6 +34,6 @@ public abstract class Component {
     }
 
     public static enum Kind {
-        MAPPING, GLOBALFUNCTION, LOCALFUNCTION, CONSTANT, VARIABLE;
+        MAPPING, GLOBALFUNCTION_MFD, GLOBALFUNCTION_MFF, LOCALFUNCTION, CONSTANT, VARIABLE;
     }
 }
