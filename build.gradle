@@ -1,5 +1,7 @@
 apply plugin: 'eclipse'
 apply plugin: 'java'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
 
 dependencies {
 	compile 'org.jsoup:jsoup:1.8.3'
@@ -7,6 +9,31 @@ dependencies {
 	compile 'org.apache.logging.log4j:log4j-api:2.3'
 	
 	runtime 'org.apache.logging.log4j:log4j-core:2.3'
+}
+
+findbugs {
+    effort = 'max'
+    reportLevel = 'low'
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+pmd {
+    ignoreFailures = true
+    ruleSets = [ 
+        'java-basic',
+        'java-braces',
+        'java-design',
+        'java-empty',
+        'java-sunsecure',
+        'java-typeresolution',
+        'java-unnecessary',
+        'java-unusedcode'
+    ]
 }
 
 repositories {
