@@ -7,9 +7,11 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+
+import de.herrlock.mfd.util.Functions.ToEntry;
+import de.herrlock.mfd.util.Functions.ToRoot;
 
 /**
  * A Global-graphical-function is defined in an external mfd-library. It knows its source- and targetstructurefields.
@@ -19,7 +21,7 @@ import com.google.common.collect.Iterables;
 public class GlobalGraphicalFunction extends Component {
     private static final Logger logger = LogManager.getLogger();
 
-    private final Root entries;
+    private final List<Root> entries;
 
     /**
      * @param element
@@ -27,8 +29,8 @@ public class GlobalGraphicalFunction extends Component {
     public GlobalGraphicalFunction( Element element ) {
         super( element );
 
-        Element root = element.select( "data" ).select( "root" ).first();
-        this.entries = new Root( root );
+        Elements roots = element.select( "data > root > entry" );
+        this.entries = ImmutableList.copyOf( Iterables.transform( roots, new ToRoot() ) );
     }
 
     public static class Entry {
@@ -40,9 +42,6 @@ public class GlobalGraphicalFunction extends Component {
         private final List<Entry> children;
 
         public Entry( Element element ) {
-            if ( element == null ) {
-                System.out.println( "null" );
-            }
             this.name = element.attr( "name" );
             String inpKey = element.attr( "inpKey" );
             String outKey = element.attr( "outKey" );
@@ -53,20 +52,13 @@ public class GlobalGraphicalFunction extends Component {
             this.componentId = "".equals( componentId ) ? -1 : Integer.parseInt( componentId );
 
             Elements entries = element.select( ">entry" );
-            this.children = ImmutableList.copyOf( Iterables.transform( entries, new NewEntryFunction() ) );
+            this.children = ImmutableList.copyOf( Iterables.transform( entries, new ToEntry() ) );
         }
     }
 
     public static final class Root extends Entry {
         public Root( Element element ) {
             super( element );
-        }
-    }
-
-    private static final class NewEntryFunction implements Function<Element, Entry> {
-        @Override
-        public Entry apply( Element input ) {
-            return new Entry( input );
         }
     }
 }
