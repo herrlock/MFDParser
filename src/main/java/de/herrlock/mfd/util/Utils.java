@@ -5,6 +5,7 @@ import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION_MFD;
 import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION_MFF;
 import static de.herrlock.mfd.elements.Component.Kind.LOCALFUNCTION;
 import static de.herrlock.mfd.elements.Component.Kind.MAPPING;
+import static de.herrlock.mfd.elements.Component.Kind.SINGLERESULT;
 import static de.herrlock.mfd.elements.Component.Kind.VARIABLE;
 
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,7 @@ import de.herrlock.mfd.elements.GlobalGraphicalFunction;
 import de.herrlock.mfd.elements.GlobalLibraryFunction;
 import de.herrlock.mfd.elements.LocalFunction;
 import de.herrlock.mfd.elements.Mapping;
+import de.herrlock.mfd.elements.SingleEntryResult;
 import de.herrlock.mfd.elements.Variable;
 
 /**
@@ -28,6 +30,9 @@ public class Utils {
     private static final Logger logger = LogManager.getLogger();
 
     public static Component getComponent( Element element ) {
+        if ( element == null ) {
+            return null;
+        }
         String name = element.attr( "name" );
         Kind kind = Utils.getKind( element );
         logger.entry( name );
@@ -44,6 +49,8 @@ public class Utils {
                 return new Constant( element );
             case VARIABLE:
                 return new Variable( element );
+            case SINGLERESULT:
+                return new SingleEntryResult( element );
             default:
                 throw new IllegalArgumentException( "Unknown type found: " + name );
         }
@@ -68,9 +75,7 @@ public class Utils {
             } else if ( kind == 5 ) {
                 result = GLOBALFUNCTION_MFF;
             } else if ( kind == 7 ) {
-                // TODO
-                // FIXME
-                result = null;
+                result = SINGLERESULT;
             } else if ( kind == 14 ) {
                 // not sure
                 result = VARIABLE;
