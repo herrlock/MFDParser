@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -42,14 +43,11 @@ public class GlobalGraphicalFunction extends Component {
         private final List<Entry> children;
 
         public Entry( Element element ) {
-            this.name = element.attr( "name" );
-            String inpKey = element.attr( "inpKey" );
-            String outKey = element.attr( "outKey" );
-            String componentId = element.attr( "componentid" );
-
-            this.inpKey = "".equals( inpKey ) ? -1 : Integer.parseInt( inpKey );
-            this.outKey = "".equals( outKey ) ? -1 : Integer.parseInt( outKey );
-            this.componentId = "".equals( componentId ) ? -1 : Integer.parseInt( componentId );
+            Attributes attr = element.attributes();
+            this.name = attr.get( "name" );
+            this.inpKey = attr.hasKey( "inpKey" ) ? -1 : Integer.parseInt( attr.get( "inpKey" ) );
+            this.outKey = attr.hasKey( "outKey" ) ? -1 : Integer.parseInt( attr.get( "outKey" ) );
+            this.componentId = attr.hasKey( "componentid" ) ? -1 : Integer.parseInt( attr.get( "componentid" ) );
 
             Elements entries = element.select( ">entry" );
             this.children = ImmutableList.copyOf( Iterables.transform( entries, new ToEntry() ) );
