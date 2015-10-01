@@ -1,19 +1,19 @@
 package de.herrlock.mfd.util;
 
-import static de.herrlock.mfd.elements.Component.Kind.CONSTANT;
-import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION_MFD;
-import static de.herrlock.mfd.elements.Component.Kind.GLOBALFUNCTION_MFF;
-import static de.herrlock.mfd.elements.Component.Kind.LOCALFUNCTION;
-import static de.herrlock.mfd.elements.Component.Kind.MAPPING;
-import static de.herrlock.mfd.elements.Component.Kind.SINGLERESULT;
-import static de.herrlock.mfd.elements.Component.Kind.VARIABLE;
+import static de.herrlock.mfd.elements.Component.Type.CONSTANT;
+import static de.herrlock.mfd.elements.Component.Type.GLOBALFUNCTION_MFD;
+import static de.herrlock.mfd.elements.Component.Type.GLOBALFUNCTION_MFF;
+import static de.herrlock.mfd.elements.Component.Type.LOCALFUNCTION;
+import static de.herrlock.mfd.elements.Component.Type.MAPPING;
+import static de.herrlock.mfd.elements.Component.Type.SINGLERESULT;
+import static de.herrlock.mfd.elements.Component.Type.VARIABLE;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
 
 import de.herrlock.mfd.elements.Component;
-import de.herrlock.mfd.elements.Component.Kind;
+import de.herrlock.mfd.elements.Component.Type;
 import de.herrlock.mfd.elements.Constant;
 import de.herrlock.mfd.elements.GlobalGraphicalFunction;
 import de.herrlock.mfd.elements.GlobalLibraryFunction;
@@ -34,7 +34,7 @@ public class Utils {
             return null;
         }
         String name = element.attr( "name" );
-        Kind kind = Utils.getKind( element );
+        Type kind = Utils.getType( element );
         logger.entry( name );
         switch ( kind ) {
             case MAPPING:
@@ -56,9 +56,9 @@ public class Utils {
         }
     }
 
-    public static Kind getKind( Element element ) {
+    public static Type getType( Element element ) {
         String kindString = element.attr( "kind" );
-        Kind result;
+        Type result;
         if ( "".equals( kindString ) ) {
             String name = element.attr( "name" );
             if ( "defaultmap1".equals( name ) ) {

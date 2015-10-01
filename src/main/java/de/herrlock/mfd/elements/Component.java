@@ -33,7 +33,7 @@ public abstract class Component {
         return MessageFormat.format( "{0}: {1}", this.getClass().getSimpleName(), this.element.attr( "name" ) );
     }
 
-    public static enum Kind {
+    public static enum Type {
         MAPPING, //
         GLOBALFUNCTION_MFD, //
         GLOBALFUNCTION_MFF, //
