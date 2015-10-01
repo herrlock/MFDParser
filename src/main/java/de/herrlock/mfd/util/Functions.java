@@ -13,26 +13,26 @@ import de.herrlock.mfd.elements.GlobalGraphicalFunction;
  */
 public abstract class Functions {
 
-    public static final class ToEntry implements Function<Element, GlobalGraphicalFunction.Entry> {
+    public static final Function<Element, GlobalGraphicalFunction.Entry> ELEMENT_TO_GGFUNCTIONENTRY = new Function<Element, GlobalGraphicalFunction.Entry>() {
         @Override
         public GlobalGraphicalFunction.Entry apply( Element input ) {
             return new GlobalGraphicalFunction.Entry( input );
         }
-    }
+    };
 
-    public static final class ToRoot implements Function<Element, GlobalGraphicalFunction.Root> {
+    public static final Function<Element, GlobalGraphicalFunction.Root> ELEMENT_TO_GGFUNCTIONROOT = new Function<Element, GlobalGraphicalFunction.Root>() {
         @Override
         public GlobalGraphicalFunction.Root apply( Element input ) {
             return new GlobalGraphicalFunction.Root( input );
         }
-    }
+    };
 
-    public static final class ToComponent implements Function<Element, Component> {
+    public static final Function<Element, Component> ELEMENT_TO_COMPONENT = new Function<Element, Component>() {
         @Override
         public Component apply( Element input ) {
             return Utils.getComponent( input );
         }
-    }
+    };
 
     private Functions() {
         // not used

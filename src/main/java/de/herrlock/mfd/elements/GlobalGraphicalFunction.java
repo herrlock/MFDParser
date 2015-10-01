@@ -11,8 +11,7 @@ import org.jsoup.select.Elements;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 
-import de.herrlock.mfd.util.Functions.ToEntry;
-import de.herrlock.mfd.util.Functions.ToRoot;
+import de.herrlock.mfd.util.Functions;
 
 /**
  * A Global-graphical-function is defined in an external mfd-library. It knows its source- and targetstructurefields.
@@ -31,7 +30,7 @@ public class GlobalGraphicalFunction extends Component {
         super( element );
 
         Elements roots = element.select( "data > root > entry" );
-        this.entries = ImmutableList.copyOf( Iterables.transform( roots, new ToRoot() ) );
+        this.entries = ImmutableList.copyOf( Iterables.transform( roots, Functions.ELEMENT_TO_GGFUNCTIONROOT ) );
     }
 
     public static class Entry {
@@ -50,7 +49,7 @@ public class GlobalGraphicalFunction extends Component {
             this.componentId = attr.hasKey( "componentid" ) ? -1 : Integer.parseInt( attr.get( "componentid" ) );
 
             Elements entries = element.select( ">entry" );
-            this.children = ImmutableList.copyOf( Iterables.transform( entries, new ToEntry() ) );
+            this.children = ImmutableList.copyOf( Iterables.transform( entries, Functions.ELEMENT_TO_GGFUNCTIONENTRY ) );
         }
     }
 
