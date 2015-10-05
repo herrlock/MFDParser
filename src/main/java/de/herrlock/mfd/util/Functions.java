@@ -4,6 +4,7 @@ import org.jsoup.nodes.Element;
 
 import com.google.common.base.Function;
 
+import de.herrlock.mfd.connections.Edge;
 import de.herrlock.mfd.elements.Component;
 import de.herrlock.mfd.elements.GlobalGraphicalFunction;
 
@@ -31,6 +32,13 @@ public abstract class Functions {
         @Override
         public Component apply( Element input ) {
             return Utils.getComponent( input );
+        }
+    };
+
+    public static final Function<Element, Edge> ELEMENT_TO_EDGE = new Function<Element, Edge>() {
+        @Override
+        public Edge apply( Element element ) {
+            return new Edge( element );
         }
     };
 
