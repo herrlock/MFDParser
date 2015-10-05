@@ -44,9 +44,9 @@ public class GlobalGraphicalFunction extends Component {
         public Entry( Element element ) {
             Attributes attr = element.attributes();
             this.name = attr.get( "name" );
-            this.inpKey = attr.hasKey( "inpKey" ) ? -1 : Integer.parseInt( attr.get( "inpKey" ) );
-            this.outKey = attr.hasKey( "outKey" ) ? -1 : Integer.parseInt( attr.get( "outKey" ) );
-            this.componentId = attr.hasKey( "componentid" ) ? -1 : Integer.parseInt( attr.get( "componentid" ) );
+            this.inpKey = attr.hasKey( "inpKey" ) ? Integer.parseInt( attr.get( "inpKey" ) ) : -1;
+            this.outKey = attr.hasKey( "outKey" ) ? Integer.parseInt( attr.get( "outKey" ) ) : -1;
+            this.componentId = attr.hasKey( "componentid" ) ? Integer.parseInt( attr.get( "componentid" ) ) : -1;
 
             Elements entries = element.select( ">entry" );
             this.children = ImmutableList.copyOf( Iterables.transform( entries, Functions.ELEMENT_TO_GGFUNCTIONENTRY ) );
