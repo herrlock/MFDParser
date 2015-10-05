@@ -16,15 +16,16 @@ public abstract class Component {
     private static final Logger logger = LogManager.getLogger();
 
     private final Element element;
-    protected final long id;
+    protected final long uid;
     protected final String name;
 
     /**
      * @param element
      */
     public Component( Element element ) {
+        logger.entry( this.getClass() );
         this.element = element;
-        this.id = Integer.parseInt( Objects.requireNonNull( element.attr( "uid" ) ) );
+        this.uid = Integer.parseInt( Objects.requireNonNull( element.attr( "uid" ) ) );
         this.name = Objects.requireNonNull( element.attr( "name" ) );
     }
 
