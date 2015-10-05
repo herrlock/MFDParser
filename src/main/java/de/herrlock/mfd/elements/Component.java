@@ -39,7 +39,7 @@ public abstract class Component {
         GLOBALFUNCTION_MFF, //
         LOCALFUNCTION, //
         CONSTANT, //
-        VARIABLE, //
+        STRUCTURE, //
         SINGLERESULT;
     }
 }

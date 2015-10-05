@@ -5,17 +5,17 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
 
 /**
- * A Variable, a control that contains structure-information. Can also be the source and/or target of a function
+ * A Structure contains xml-information. Can be a variable. Can also be source or target of a function.
  * 
  * @author HerrLock
  */
-public class Variable extends Component {
+public class Structure extends Component {
     private static final Logger logger = LogManager.getLogger();
 
     /**
      * @param element
      */
-    public Variable( Element element ) {
+    public Structure( Element element ) {
         super( element );
     }
 

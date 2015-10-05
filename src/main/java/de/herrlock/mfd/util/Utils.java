@@ -6,7 +6,7 @@ import static de.herrlock.mfd.elements.Component.Type.GLOBALFUNCTION_MFF;
 import static de.herrlock.mfd.elements.Component.Type.LOCALFUNCTION;
 import static de.herrlock.mfd.elements.Component.Type.MAPPING;
 import static de.herrlock.mfd.elements.Component.Type.SINGLERESULT;
-import static de.herrlock.mfd.elements.Component.Type.VARIABLE;
+import static de.herrlock.mfd.elements.Component.Type.STRUCTURE;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +20,7 @@ import de.herrlock.mfd.elements.GlobalLibraryFunction;
 import de.herrlock.mfd.elements.LocalFunction;
 import de.herrlock.mfd.elements.Mapping;
 import de.herrlock.mfd.elements.SingleEntryResult;
-import de.herrlock.mfd.elements.Variable;
+import de.herrlock.mfd.elements.Structure;
 
 /**
  * @author HerrLock
@@ -47,8 +47,8 @@ public class Utils {
                 return new GlobalLibraryFunction( element );
             case CONSTANT:
                 return new Constant( element );
-            case VARIABLE:
-                return new Variable( element );
+            case STRUCTURE:
+                return new Structure( element );
             case SINGLERESULT:
                 return new SingleEntryResult( element );
             default:
@@ -77,8 +77,7 @@ public class Utils {
             } else if ( kind == 7 ) {
                 result = SINGLERESULT;
             } else if ( kind == 14 ) {
-                // not sure
-                result = VARIABLE;
+                result = STRUCTURE;
             } else {
                 throw new IllegalArgumentException( "Type cannot be determined: " + kindString );
             }
