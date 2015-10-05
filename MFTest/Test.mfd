@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Edited with Altova MapForce 2015r4sp1 -->
-<mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="22">
+<mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="26">
 	<resources/>
 	<component name="defaultmap1" blackbox="0" uid="1" editable="1">
 		<properties SelectedLanguage="java"/>
@@ -19,13 +19,11 @@
 							</header>
 							<entry name="FileInstance" ns="1" expanded="1">
 								<entry name="document" ns="1" expanded="1" casttotargettypemode="cast-in-subtree">
-									<entry name="root" outkey="39">
-										<entry name="element" outkey="40">
-											<entry name="value" outkey="41">
+									<entry name="root" outkey="39" expanded="1">
+										<entry name="element" outkey="40" expanded="1">
+											<entry name="value" outkey="41" expanded="1">
 												<entry name="a" outkey="42"/>
 												<entry name="b" outkey="43"/>
-												<entry name="c" outkey="44"/>
-												<entry name="d" outkey="45"/>
 											</entry>
 											<entry name="result" outkey="46"/>
 										</entry>
@@ -50,9 +48,9 @@
 							</header>
 							<entry name="FileInstance" ns="1" expanded="1">
 								<entry name="document" ns="1" expanded="1" casttotargettypemode="cast-in-subtree">
-									<entry name="anotherRoot" inpkey="47">
-										<entry name="anotherElement" inpkey="48">
-											<entry name="anotherValue" inpkey="49">
+									<entry name="anotherRoot" inpkey="47" expanded="1">
+										<entry name="anotherElement" inpkey="48" expanded="1">
+											<entry name="anotherValue" inpkey="49" expanded="1">
 												<entry name="anotherA" inpkey="50"/>
 												<entry name="anotherB" inpkey="51"/>
 												<entry name="anotherC" inpkey="52"/>
@@ -65,6 +63,17 @@
 							</entry>
 						</root>
 						<document schema="test2.xsd" outputinstance="testOut.xml" instanceroot="{}anotherRoot"/>
+						<wsdl/>
+					</data>
+				</component>
+				<component name="constant" library="core" uid="4" kind="2">
+					<properties/>
+					<targets>
+						<datapoint pos="0" key="63"/>
+					</targets>
+					<view ltx="336" lty="263" rbx="437" rby="281"/>
+					<data>
+						<constant value="qwertzuiopü" datatype="string"/>
 						<wsdl/>
 					</data>
 				</component>
@@ -97,19 +106,15 @@
 							<edge vertexkey="51" edgekey="59"/>
 						</edges>
 					</vertex>
-					<vertex vertexkey="44">
-						<edges>
-							<edge vertexkey="52" edgekey="60"/>
-						</edges>
-					</vertex>
-					<vertex vertexkey="45">
-						<edges>
-							<edge vertexkey="53" edgekey="61"/>
-						</edges>
-					</vertex>
 					<vertex vertexkey="46">
 						<edges>
 							<edge vertexkey="54" edgekey="62"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="63">
+						<edges>
+							<edge vertexkey="52" edgekey="64"/>
+							<edge vertexkey="53" edgekey="65"/>
 						</edges>
 					</vertex>
 				</vertices>
