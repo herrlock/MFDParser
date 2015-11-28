@@ -15,7 +15,7 @@ import org.jsoup.nodes.Element;
 public abstract class Component {
     private static final Logger logger = LogManager.getLogger();
 
-    private final Element element;
+    protected final Element element;
     protected final long uid;
     protected final String name;
 
@@ -31,7 +31,7 @@ public abstract class Component {
 
     @Override
     public String toString() {
-        return MessageFormat.format( "{0}: {1}", this.getClass().getSimpleName(), this.element.attr( "name" ) );
+        return MessageFormat.format( "{0}: {1}", this.getClass().getSimpleName(), this.name );
     }
 
     public static enum Type {
