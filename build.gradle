@@ -12,6 +12,20 @@ dependencies {
 	runtime 'org.apache.logging.log4j:log4j-core:2.3'
 }
 
+task sourceJar(type: Jar) {
+	classifier 'source'
+	destinationDir jar.destinationDir
+    from sourceSets.main.allJava
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier 'javadoc'
+	destinationDir jar.destinationDir
+    from javadoc.outputs
+}
+task allJars(dependsOn: [jar, sourceJar, javadocJar]) {
+	
+}
+
 apply plugin: 'findbugs'
 findbugs {
     effort = 'max'
