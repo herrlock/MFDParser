@@ -1,7 +1,8 @@
 apply plugin: 'eclipse'
 apply plugin: 'java'
-apply plugin: 'findbugs'
-apply plugin: 'pmd'
+
+group = 'de.herrlock'
+version = '0.0.1-SNAPSHOT'
 
 dependencies {
 	compile 'org.jsoup:jsoup:1.8.3'
@@ -11,6 +12,7 @@ dependencies {
 	runtime 'org.apache.logging.log4j:log4j-core:2.3'
 }
 
+apply plugin: 'findbugs'
 findbugs {
     effort = 'max'
     reportLevel = 'low'
@@ -23,6 +25,7 @@ tasks.withType(FindBugs) {
     }
 }
 
+apply plugin: 'pmd'
 pmd {
     ignoreFailures = true
     ruleSets = [ 
