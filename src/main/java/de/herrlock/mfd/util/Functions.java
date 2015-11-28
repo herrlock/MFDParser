@@ -4,9 +4,9 @@ import org.jsoup.nodes.Element;
 
 import com.google.common.base.Function;
 
-import de.herrlock.mfd.connections.Edge;
 import de.herrlock.mfd.elements.Component;
-import de.herrlock.mfd.elements.GlobalGraphicalFunction;
+import de.herrlock.mfd.elements.Constant;
+import de.herrlock.mfd.elements.GraphicalFunction;
 
 /**
  * @author HerrLock
@@ -14,17 +14,17 @@ import de.herrlock.mfd.elements.GlobalGraphicalFunction;
  */
 public abstract class Functions {
 
-    public static final Function<Element, GlobalGraphicalFunction.Entry> ELEMENT_TO_GGFUNCTIONENTRY = new Function<Element, GlobalGraphicalFunction.Entry>() {
+    public static final Function<Element, GraphicalFunction.Entry> ELEMENT_TO_FUNCTIONENTRY = new Function<Element, GraphicalFunction.Entry>() {
         @Override
-        public GlobalGraphicalFunction.Entry apply( Element input ) {
-            return new GlobalGraphicalFunction.Entry( input );
+        public GraphicalFunction.Entry apply( Element input ) {
+            return new GraphicalFunction.Entry( input );
         }
     };
 
-    public static final Function<Element, GlobalGraphicalFunction.Root> ELEMENT_TO_GGFUNCTIONROOT = new Function<Element, GlobalGraphicalFunction.Root>() {
+    public static final Function<Element, GraphicalFunction.Root> ELEMENT_TO_FUNCTIONROOT = new Function<Element, GraphicalFunction.Root>() {
         @Override
-        public GlobalGraphicalFunction.Root apply( Element input ) {
-            return new GlobalGraphicalFunction.Root( input );
+        public GraphicalFunction.Root apply( Element input ) {
+            return new GraphicalFunction.Root( input );
         }
     };
 
@@ -35,10 +35,10 @@ public abstract class Functions {
         }
     };
 
-    public static final Function<Element, Edge> ELEMENT_TO_EDGE = new Function<Element, Edge>() {
+    public static final Function<Element, Constant.Target> FUNCTION_TO_CONSTANTTARGET = new Function<Element, Constant.Target>() {
         @Override
-        public Edge apply( Element element ) {
-            return new Edge( element );
+        public Constant.Target apply( Element input ) {
+            return new Constant.Target( input );
         }
     };
 

@@ -9,16 +9,16 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 import de.herrlock.mfd.util.Functions;
 
 /**
- * A Global-graphical-function is defined in an external mfd-library. It knows its source- and targetstructurefields.
+ * A GraphicalFunction is defined as mfd-function. It looks like a mapping and knows its source- and targetstructurefields.
  * 
  * @author HerrLock
  */
-public class GlobalGraphicalFunction extends Component {
+public class GraphicalFunction extends Component {
     private static final Logger logger = LogManager.getLogger();
 
     private final List<Root> entries;
@@ -26,11 +26,11 @@ public class GlobalGraphicalFunction extends Component {
     /**
      * @param element
      */
-    public GlobalGraphicalFunction( Element element ) {
+    public GraphicalFunction( Element element ) {
         super( element );
 
-        Elements roots = element.select( "data > root > entry" );
-        this.entries = ImmutableList.copyOf( Iterables.transform( roots, Functions.ELEMENT_TO_GGFUNCTIONROOT ) );
+        Elements roots = element.select( "> data > root > entry" );
+        this.entries = ImmutableList.copyOf( Lists.transform( roots, Functions.ELEMENT_TO_FUNCTIONROOT ) );
     }
 
     public static class Entry {
@@ -49,7 +49,7 @@ public class GlobalGraphicalFunction extends Component {
             this.componentId = attr.hasKey( "componentid" ) ? Integer.parseInt( attr.get( "componentid" ) ) : -1;
 
             Elements entries = element.select( ">entry" );
-            this.children = ImmutableList.copyOf( Iterables.transform( entries, Functions.ELEMENT_TO_GGFUNCTIONENTRY ) );
+            this.children = ImmutableList.copyOf( Lists.transform( entries, Functions.ELEMENT_TO_FUNCTIONENTRY ) );
         }
     }
 

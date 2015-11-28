@@ -15,8 +15,8 @@ import org.jsoup.nodes.Element;
 import de.herrlock.mfd.elements.Component;
 import de.herrlock.mfd.elements.Component.Type;
 import de.herrlock.mfd.elements.Constant;
-import de.herrlock.mfd.elements.GlobalGraphicalFunction;
 import de.herrlock.mfd.elements.GlobalLibraryFunction;
+import de.herrlock.mfd.elements.GraphicalFunction;
 import de.herrlock.mfd.elements.LocalFunction;
 import de.herrlock.mfd.elements.Mapping;
 import de.herrlock.mfd.elements.SingleEntryResult;
@@ -42,7 +42,7 @@ public class Utils {
             case LOCALFUNCTION:
                 return new LocalFunction( element );
             case GLOBALFUNCTION_MFD:
-                return new GlobalGraphicalFunction( element );
+                return new GraphicalFunction( element );
             case GLOBALFUNCTION_MFF:
                 return new GlobalLibraryFunction( element );
             case CONSTANT:

@@ -1,9 +1,14 @@
 package de.herrlock.mfd.elements;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
+
+import com.google.common.collect.Lists;
+
+import de.herrlock.mfd.util.Functions;
 
 /**
  * A Constant has a type and a value.
@@ -13,7 +18,7 @@ import org.jsoup.nodes.Element;
 public class Constant extends Component {
     private static final Logger logger = LogManager.getLogger();
 
-    private final Element[] targets;
+    private final List<Target> targets;
     private final String value;
     private final String datatype;
 
@@ -24,17 +29,25 @@ public class Constant extends Component {
         super( element );
         Element constant = element.select( "> data > constant" ).first();
         if ( constant != null ) {
-            Attributes attr = constant.attributes();
-            this.value = attr.get( "value" );
-            this.datatype = attr.get( "datatype" );
+            this.value = element.attr( "value" );
+            this.datatype = element.attr( "datatype" );
         } else {
             this.value = "";
             this.datatype = "";
         }
 
-        targets = null;
+        this.targets = Lists.transform( element.select( " > targets > datapoint " ), Functions.FUNCTION_TO_CONSTANTTARGET );
 
-        // TODO Auto-generated constructor stub
     }
 
+    public static class Target {
+
+        private final String pos;
+        private final String key;
+
+        public Target( Element e ) {
+            this.pos = e.attr( "pos" );
+            this.key = e.attr( "key" );
+        }
+    }
 }
