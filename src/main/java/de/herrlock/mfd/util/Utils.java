@@ -1,13 +1,5 @@
 package de.herrlock.mfd.util;
 
-import static de.herrlock.mfd.elements.Component.Type.CONSTANT;
-import static de.herrlock.mfd.elements.Component.Type.GLOBALFUNCTION_MFD;
-import static de.herrlock.mfd.elements.Component.Type.GLOBALFUNCTION_MFF;
-import static de.herrlock.mfd.elements.Component.Type.LOCALFUNCTION;
-import static de.herrlock.mfd.elements.Component.Type.MAPPING;
-import static de.herrlock.mfd.elements.Component.Type.SINGLERESULT;
-import static de.herrlock.mfd.elements.Component.Type.STRUCTURE;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
@@ -26,10 +18,10 @@ import de.herrlock.mfd.elements.Structure;
  * @author HerrLock
  *
  */
-public class Utils {
+public final class Utils {
     private static final Logger logger = LogManager.getLogger();
 
-    public static Component getComponent( Element element ) {
+    public static Component getComponent( final Element element ) {
         if ( element == null ) {
             return null;
         }
@@ -56,28 +48,28 @@ public class Utils {
         }
     }
 
-    public static Type getType( Element element ) {
+    public static Type getType( final Element element ) {
         String kindString = element.attr( "kind" );
         Type result;
         if ( "".equals( kindString ) ) {
             String name = element.attr( "name" );
             if ( "defaultmap1".equals( name ) ) {
-                result = MAPPING;
+                result = Type.MAPPING;
             } else {
-                result = LOCALFUNCTION;
+                result = Type.LOCALFUNCTION;
             }
         } else {
             int kind = Integer.parseInt( kindString );
             if ( kind == 2 ) {
-                result = CONSTANT;
+                result = Type.CONSTANT;
             } else if ( kind == 19 ) {
-                result = GLOBALFUNCTION_MFD;
+                result = Type.GLOBALFUNCTION_MFD;
             } else if ( kind == 5 ) {
-                result = GLOBALFUNCTION_MFF;
+                result = Type.GLOBALFUNCTION_MFF;
             } else if ( kind == 7 ) {
-                result = SINGLERESULT;
+                result = Type.SINGLERESULT;
             } else if ( kind == 14 ) {
-                result = STRUCTURE;
+                result = Type.STRUCTURE;
             } else {
                 throw new IllegalArgumentException( "Type cannot be determined: " + kindString );
             }
@@ -85,4 +77,7 @@ public class Utils {
         return result;
     }
 
+    private Utils() {
+        // not used
+    }
 }
