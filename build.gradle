@@ -4,6 +4,9 @@ apply plugin: 'java'
 group = 'de.herrlock'
 version = '0.0.1-SNAPSHOT'
 
+repositories {
+	mavenCentral()
+}
 dependencies {
 	compile 'org.jsoup:jsoup:1.8.3'
 	compile 'com.google.guava:guava:18.0'
@@ -32,28 +35,9 @@ findbugs {
     reportLevel = 'low'
     ignoreFailures = true
 }
-tasks.withType(FindBugs) {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-}
 
 apply plugin: 'pmd'
 pmd {
-    ignoreFailures = true
-    ruleSets = [ 
-        'java-basic',
-        'java-braces',
-        'java-design',
-        'java-empty',
-        'java-sunsecure',
-        'java-typeresolution',
-        'java-unnecessary',
-        'java-unusedcode'
-    ]
-}
-
-repositories {
-	mavenCentral()
+	ignoreFailures = true
+	ruleSetFiles = files("${rootProject.projectDir}/misc/pmd.rulesets.xml")
 }
