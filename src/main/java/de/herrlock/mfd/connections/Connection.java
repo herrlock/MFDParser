@@ -1,11 +1,14 @@
 package de.herrlock.mfd.connections;
 
+import java.text.MessageFormat;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
+ * A Connection between the nodes with the keys {@code sourceKey} and {@code targetKey} and with a description
+ * 
  * @author HerrLock
- *
  */
 public class Connection {
     private static final Logger logger = LogManager.getLogger();
@@ -14,7 +17,7 @@ public class Connection {
     private final int targetKey;
     private final String description;
 
-    public Connection( int sourceKey, int targetKey, String description ) {
+    public Connection( final int sourceKey, final int targetKey, final String description ) {
         logger.entry( sourceKey, targetKey, description );
         this.sourceKey = sourceKey;
         this.targetKey = targetKey;
@@ -31,6 +34,12 @@ public class Connection {
 
     public String getDescription() {
         return this.description;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format( "Source: {0}, Target: {1}, Description: {2}", this.sourceKey, this.targetKey,
+            this.description );
     }
 
 }
