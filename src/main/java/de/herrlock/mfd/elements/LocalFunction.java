@@ -1,5 +1,6 @@
 package de.herrlock.mfd.elements;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,10 +8,11 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableList;
 
+import de.herrlock.mfd.connections.Connection;
 import de.herrlock.mfd.connections.Graph;
-import de.herrlock.mfd.util.Functions;
+import de.herrlock.mfd.util.Utils;
 
 /**
  * A named function defined in the local mapping. This class describes the declaration of the function.
@@ -28,8 +30,9 @@ public class LocalFunction extends GraphicalFunction {
     /**
      * @param element
      */
-    public LocalFunction( Element element ) {
+    public LocalFunction( final Element element ) {
         super( element );
+        logger.entry();
 
         Elements descriptionNode = element.select( "description" );
         Element descShort = descriptionNode.select( "> short" ).first();
@@ -40,8 +43,35 @@ public class LocalFunction extends GraphicalFunction {
         Element graph = element.select( "> structure > graph" ).first();
         this.graph = new Graph( graph );
 
-        Elements children = element.select( "> structure > children > component" );
-        this.children = Lists.transform( children, Functions.ELEMENT_TO_COMPONENT );
+        Elements components = element.select( "> structure > children > component" );
+        List<Component> children = new ArrayList<>();
+        for ( Element input : components ) {
+            Component component = Utils.getComponent( input );
+            children.add( component );
+        }
+        this.children = ImmutableList.copyOf( children );
+    }
+
+    public String getShortDescription() {
+        return this.shortDescription;
+    }
+
+    public String getLongDescription() {
+        return this.longDescription;
+    }
+
+    public Graph getGraph() {
+        return this.graph;
+    }
+
+    public List<Component> getChildren() {
+        return this.children;
+    }
+
+    public List<Connection> resolveConnections() {
+        // TODO
+        List<Connection> connections = this.graph.getConnections();
+        return ImmutableList.copyOf( connections );
     }
 
 }

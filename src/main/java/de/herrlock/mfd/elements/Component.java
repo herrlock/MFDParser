@@ -13,6 +13,7 @@ import org.jsoup.nodes.Element;
  * @author HerrLock
  */
 public abstract class Component {
+    @SuppressWarnings( "unused" )
     private static final Logger logger = LogManager.getLogger();
 
     protected final Element element;
@@ -22,16 +23,25 @@ public abstract class Component {
     /**
      * @param element
      */
-    public Component( Element element ) {
-        logger.entry( this.getClass() );
+    public Component( final Element element ) {
         this.element = element;
         this.uid = Integer.parseInt( Objects.requireNonNull( element.attr( "uid" ) ) );
         this.name = Objects.requireNonNull( element.attr( "name" ) );
     }
 
+    public long getUID() {
+        return this.uid;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    // public abstract List<Connection> resolveConnections();
+
     @Override
     public String toString() {
-        return MessageFormat.format( "{0}: {1}", this.getClass().getSimpleName(), this.name );
+        return MessageFormat.format( "{0}: {1} (UID: {2})", this.getClass().getSimpleName(), this.name, this.uid );
     }
 
     public static enum Type {

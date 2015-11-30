@@ -15,8 +15,9 @@ public class Structure extends Component {
     /**
      * @param element
      */
-    public Structure( Element element ) {
+    public Structure( final Element element ) {
         super( element );
+        logger.entry();
     }
 
 }

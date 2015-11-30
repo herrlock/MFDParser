@@ -1,14 +1,13 @@
 package de.herrlock.mfd.elements;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
 
-import com.google.common.collect.Lists;
-
-import de.herrlock.mfd.util.Functions;
+import com.google.common.collect.ImmutableList;
 
 /**
  * A Constant has a type and a value.
@@ -18,36 +17,60 @@ import de.herrlock.mfd.util.Functions;
 public class Constant extends Component {
     private static final Logger logger = LogManager.getLogger();
 
-    private final List<Target> targets;
     private final String value;
     private final String datatype;
+    private final List<Target> targets;
 
     /**
      * @param element
      */
-    public Constant( Element element ) {
+    public Constant( final Element element ) {
         super( element );
+        logger.entry();
+
         Element constant = element.select( "> data > constant" ).first();
-        if ( constant != null ) {
-            this.value = element.attr( "value" );
-            this.datatype = element.attr( "datatype" );
-        } else {
+        if ( constant == null ) {
             this.value = "";
             this.datatype = "";
+        } else {
+            this.value = element.attr( "value" );
+            this.datatype = element.attr( "datatype" );
         }
-
-        this.targets = Lists.transform( element.select( " > targets > datapoint " ), Functions.FUNCTION_TO_CONSTANTTARGET );
-
+        List<Target> targets = new ArrayList<>();
+        for ( Element target : element.select( " > targets > datapoint " ) ) {
+            targets.add( new Target( target ) );
+        }
+        this.targets = ImmutableList.copyOf( targets );
     }
 
-    public static class Target {
+    public String getValue() {
+        return this.value;
+    }
+
+    public String getDatatype() {
+        return this.datatype;
+    }
+
+    public List<Target> getTargets() {
+        return this.targets;
+    }
+
+    public static final class Target {
 
         private final String pos;
         private final String key;
 
-        public Target( Element e ) {
+        public Target( final Element e ) {
             this.pos = e.attr( "pos" );
             this.key = e.attr( "key" );
+        }
+
+        public String getPos() {
+            return this.pos;
+        }
+
+        public String getKey() {
+            return this.key;
         }
     }
 }

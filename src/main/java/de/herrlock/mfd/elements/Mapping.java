@@ -15,8 +15,9 @@ public class Mapping extends LocalFunction {
     /**
      * @param element
      */
-    public Mapping( Element element ) {
+    public Mapping( final Element element ) {
         super( element );
+        logger.entry();
         // TODO Auto-generated constructor stub
     }
 

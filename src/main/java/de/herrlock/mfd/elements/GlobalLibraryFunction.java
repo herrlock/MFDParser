@@ -15,7 +15,8 @@ public class GlobalLibraryFunction extends Component {
     /**
      * @param element
      */
-    public GlobalLibraryFunction( Element element ) {
+    public GlobalLibraryFunction( final Element element ) {
         super( element );
+        logger.entry();
     }
 }
