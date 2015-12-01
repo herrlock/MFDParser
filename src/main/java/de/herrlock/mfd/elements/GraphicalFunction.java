@@ -11,6 +11,8 @@ import org.jsoup.select.Elements;
 
 import com.google.common.collect.ImmutableList;
 
+import de.herrlock.mfd.connections.VertexReference;
+
 /**
  * A GraphicalFunction is defined as mfd-function. It looks like a mapping and knows its source- and targetstructurefields.
  * 
@@ -39,6 +41,12 @@ public class GraphicalFunction extends Component {
 
     public List<Root> getEntries() {
         return this.entries;
+    }
+
+    @Override
+    public List<VertexReference> getReferences() {
+        List<VertexReference> result = new ArrayList<>();
+        return ImmutableList.copyOf( result );
     }
 
     public static class Entry {

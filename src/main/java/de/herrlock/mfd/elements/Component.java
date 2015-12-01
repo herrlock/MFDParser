@@ -1,11 +1,14 @@
 package de.herrlock.mfd.elements;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
+
+import de.herrlock.mfd.connections.VertexReference;
 
 /**
  * A general type of any control used in a mapping
@@ -37,7 +40,7 @@ public abstract class Component {
         return this.name;
     }
 
-    // public abstract List<Connection> resolveConnections();
+    public abstract List<VertexReference> getReferences();
 
     @Override
     public String toString() {

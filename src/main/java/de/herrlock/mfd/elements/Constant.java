@@ -9,6 +9,8 @@ import org.jsoup.nodes.Element;
 
 import com.google.common.collect.ImmutableList;
 
+import de.herrlock.mfd.connections.VertexReference;
+
 /**
  * A Constant has a type and a value.
  * 
@@ -55,22 +57,32 @@ public class Constant extends Component {
         return this.targets;
     }
 
+    @Override
+    public List<VertexReference> getReferences() {
+        List<VertexReference> result = new ArrayList<>();
+        for ( Target target : this.targets ) {
+            result.add( new VertexReference( target.getKey() ) );
+        }
+        return ImmutableList.copyOf( result );
+    }
+
     public static final class Target {
 
-        private final String pos;
-        private final String key;
+        private final int pos;
+        private final int key;
 
         public Target( final Element e ) {
-            this.pos = e.attr( "pos" );
-            this.key = e.attr( "key" );
+            this.pos = Integer.parseInt( e.attr( "pos" ) );
+            this.key = Integer.parseInt( e.attr( "key" ) );
         }
 
-        public String getPos() {
+        public int getPos() {
             return this.pos;
         }
 
-        public String getKey() {
+        public int getKey() {
             return this.key;
         }
     }
+
 }

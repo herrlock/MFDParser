@@ -12,6 +12,7 @@ import com.google.common.collect.ImmutableList;
 
 import de.herrlock.mfd.connections.Connection;
 import de.herrlock.mfd.connections.Graph;
+import de.herrlock.mfd.connections.VertexReference;
 import de.herrlock.mfd.util.Utils;
 
 /**
@@ -66,6 +67,12 @@ public class LocalFunction extends GraphicalFunction {
 
     public List<Component> getChildren() {
         return this.children;
+    }
+
+    @Override
+    public List<VertexReference> getReferences() {
+        List<VertexReference> result = new ArrayList<>();
+        return ImmutableList.copyOf( result );
     }
 
     public List<Connection> resolveConnections() {
