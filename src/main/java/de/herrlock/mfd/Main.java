@@ -25,7 +25,6 @@ public final class Main {
 
     public static final String FOLDER = "./MFTest";
     public static final String FILENAME = "Test";
-    // public static final String FILENAME = "OrdersITX_to_IDocOrdersGen";
 
     public static void main( final String... args ) throws IOException {
         Document document;
