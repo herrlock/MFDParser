@@ -16,6 +16,8 @@ public class Connection {
     private final int sourceKey;
     private final int targetKey;
     private final String description;
+    private String sourcePath;
+    private String targetPath;
 
     public Connection( final int sourceKey, final int targetKey, final String description ) {
         logger.entry( sourceKey, targetKey, description );
@@ -34,6 +36,22 @@ public class Connection {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public String getSourcePath() {
+        return this.sourcePath;
+    }
+
+    public void setSourcePath( String sourcePath ) {
+        this.sourcePath = sourcePath;
+    }
+
+    public String getTargetPath() {
+        return this.targetPath;
+    }
+
+    public void setTargetPath( String targetPath ) {
+        this.targetPath = targetPath;
     }
 
     @Override
