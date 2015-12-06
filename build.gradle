@@ -41,3 +41,7 @@ pmd {
 	ignoreFailures = true
 	ruleSetFiles = files("${rootProject.projectDir}/misc/pmd.rulesets.xml")
 }
+
+apply plugin: 'application'
+mainClassName = 'de.herrlock.mfd.Main'
+
