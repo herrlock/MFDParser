@@ -63,7 +63,7 @@ public final class Main {
         for ( Root root : entries ) {
             logger.info( ">> root: {}", root );
         }
-        List<Connection> connections = localFunction.resolveConnections();
+        List<Connection> connections = localFunction.getConnections();
         logger.info( "> connections: {}", connections.size() );
         for ( Connection connection : connections ) {
             logger.info( ">> connection: {}", connection );
