@@ -33,16 +33,24 @@ public final class Main {
         }
         MappingDocument mappingDocument = new MappingDocument( document );
         List<Component> elements = mappingDocument.getComponents();
-        for ( Component component : elements ) {
-            logger.info( component );
-            switch ( component.getClass().getSimpleName() ) {
-                case "Mapping":
-                case "LocalFunction":
-                    printLocalFunction( LocalFunction.class.cast( component ) );
-                    break;
-                default:
-                    break;
+        for ( Component rootComponent : elements ) {
+            doStuff( rootComponent );
+        }
+    }
+
+    private static void doStuff( Component component ) {
+        logger.info( component );
+        Class<? extends Component> componentClass = component.getClass();
+        if ( LocalFunction.class.isAssignableFrom( componentClass ) ) {
+            LocalFunction localFunction = LocalFunction.class.cast( component );
+            printLocalFunction( localFunction );
+
+            List<Component> children = localFunction.getChildren();
+            for ( Component child : children ) {
+                doStuff( child );
             }
+        } else {
+            logger.debug( component.getClass() );
         }
     }
 
