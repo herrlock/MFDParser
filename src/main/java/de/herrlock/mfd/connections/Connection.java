@@ -56,8 +56,8 @@ public class Connection {
 
     @Override
     public String toString() {
-        return MessageFormat.format( "Source: {0}, Target: {1}, Description: {2}", this.sourceKey, this.targetKey,
-            this.description );
+        return MessageFormat.format( "Source: ''{3}'' ({0}), Target: ''{4}'' ({1}), Description: ''{2}''", this.sourceKey,
+            this.targetKey, this.description, this.sourcePath, this.targetPath );
     }
 
 }
