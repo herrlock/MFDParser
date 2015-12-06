@@ -19,7 +19,7 @@ import com.google.common.collect.ImmutableList;
 public class GraphicalFunction extends Component {
     private static final Logger logger = LogManager.getLogger();
 
-    private final List<Root> entries;
+    private final List<Root> rootEntries;
 
     /**
      * @param element
@@ -34,11 +34,11 @@ public class GraphicalFunction extends Component {
             Root component = new Root( input );
             rootEntryList.add( component );
         }
-        this.entries = ImmutableList.copyOf( rootEntryList );
+        this.rootEntries = ImmutableList.copyOf( rootEntryList );
     }
 
     public List<Root> getEntries() {
-        return this.entries;
+        return this.rootEntries;
     }
 
     public static class Entry {
@@ -92,4 +92,5 @@ public class GraphicalFunction extends Component {
             super( element );
         }
     }
+
 }

@@ -42,14 +42,14 @@ public class MappingDocument {
     }
 
     public Mapping getMapping() {
-        return Mapping.class.cast( Iterables.find( this.components, PREDICATE ) );
+        return Mapping.class.cast( Iterables.find( this.components, IS_DEFAULTMAP1 ) );
     }
 
     public List<Component> getComponents() {
         return this.components;
     }
 
-    private static final Predicate<Component> PREDICATE = new Predicate<Component>() {
+    private static final Predicate<Component> IS_DEFAULTMAP1 = new Predicate<Component>() {
         @Override
         public boolean apply( final Component input ) {
             return input != null && input.getName().equals( "defaultmap1" );

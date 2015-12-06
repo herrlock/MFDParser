@@ -3,6 +3,7 @@ package de.herrlock.mfd.elements;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * A Structure contains xml-information. Can be a variable. Can also be source or target of a function.
@@ -19,6 +20,7 @@ public class Structure extends Component {
         super( element );
         logger.entry();
 
+        Elements rootEntries = element.select( " > data > root > entry" );
     }
 
 }
