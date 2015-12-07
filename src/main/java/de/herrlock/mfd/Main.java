@@ -14,8 +14,8 @@ import org.jsoup.parser.Parser;
 
 import de.herrlock.mfd.connections.Connection;
 import de.herrlock.mfd.elements.Component;
-import de.herrlock.mfd.elements.GraphicalFunction.Root;
 import de.herrlock.mfd.elements.LocalFunction;
+import de.herrlock.mfd.entries.Entry.Root;
 
 /**
  * @author HerrLock

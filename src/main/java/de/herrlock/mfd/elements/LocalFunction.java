@@ -12,7 +12,7 @@ import com.google.common.collect.ImmutableList;
 
 import de.herrlock.mfd.connections.Connection;
 import de.herrlock.mfd.connections.Graph;
-import de.herrlock.mfd.elements.GraphicalFunction.Root;
+import de.herrlock.mfd.entries.Entry.Root;
 import de.herrlock.mfd.util.Utils;
 
 /**
@@ -79,7 +79,7 @@ public class LocalFunction extends GraphicalFunction {
     protected void resolvePaths( List<Connection> connections ) {
         logger.entry();
         List<Root> entries = this.getEntries();
-        
+
         // TODO Auto-generated method stub
     }
 
